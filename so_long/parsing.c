@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:50:04 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/22 19:19:12 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:59:34 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 
 int	count_line(void)
 {
+	t_check	check;
 	int	fd;
-	int	i;
 	size_t	j;
 	char *line;
 
-	i= 0;
+	(check.count)= 0;
 	fd = open("txt.txt", O_RDONLY);
 	if((line = get_next_line(fd)) != NULL)
 	{
 		j = ft_strlen(line);
-		i++;
+		check.count++;
 		free(line);
 	}
 	while((line = get_next_line(fd)) != NULL)
 	{
 		if (ft_strlen(line) != j)
 		{
-			ft_printf("INVALID_MAP\n");
+			ft_printf("INVALID_MAP\nNot RECTANGULAR\n");
 			return(free(line), -1);
 		}
-			i++;
+			check.count++;
 			free(line);
 	}
 	close(fd);
-	return(i);
+	return(check.count);
 }
 void	free_mat(char **matrix, int j)
 {
@@ -49,35 +49,31 @@ void	free_mat(char **matrix, int j)
 	}
 	return;
 }
-char	**store(int count)
+char	**store(t_check *check)
 {
-	char	**matrix;
 	int		fd;
 	int		i;
 
 	i = 0;
 	fd = open("txt.txt", O_RDONLY);
-	matrix = malloc((count + 1) * sizeof(char *));
-	if(!matrix)
+	check->matrix = malloc((check->count + 1) * sizeof(char *));
+	if(!check->matrix)
 		return(close(fd), NULL);
-	while(i < count)
+	while(i < check->count)
 	{
-		matrix[i] = get_next_line(fd);
-		if (!matrix[i])
+		check->matrix[i] = get_next_line(fd);
+		if (!check->matrix[i])
 		{
-			free_mat(matrix, i);
+			free_mat(check->matrix, i);
+			close(fd);
 			return(NULL);
 		}
 		i++;
 	}
-	matrix[count] = NULL;
+	check->matrix[check->count] = NULL;
 	close(fd);
-	return(matrix);
+	return(check->matrix);
 }
 
-int	main(void)
-{
-	all_check();
-	return(0);
-}
+
 

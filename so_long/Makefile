@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MLX_FLAGS = mlx/libmlx.a -L/usr/lib/X11 -lXext -lX11
 
 INCLUDES = -I/usr/include -Imlx -Iget_next_line -Ilibft -Ilibprintf
@@ -17,7 +17,7 @@ NAME_BONUS = so_long_bonus.a
 GNL = get_next_line/
 GNL_SRC = get_next_line.c get_next_line_utils.c
 SRCDIR = source_fls/
-SRC = parsing.c utils.c checks.c the_call.c
+SRC = parsing.c utils.c checks.c the_call.c back_tracking.c
 
 BONUSDIR = bonus/
 BONUS =
@@ -34,7 +34,7 @@ bonus:$(NAME_BONUS)
 
 #normal program
 $(NAME):  $(LIBFT) $(OBJECTS) $(GNL_OBJECTS) $(PRINT)
-	$(CC) $(CFLAGS) $(OBJECTS) $(GNL_OBJECTS) -o $(NAME) $(PRINT) $(LIBFT) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) $(OBJECTS) $(GNL_OBJECTS) -o  $(NAME) $(PRINT) $(LIBFT) $(MLX_FLAGS)
 
 #Bonus
 $(NAME_BONUS):  $(LIBFT) $(BONUS_OBJECTS)  $(GNL_OBJECTS) $(PRINT)

@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:26:53 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/22 19:44:26 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:26:13 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 		return(ft_printf("INVALID_MAP\nIncorrect values on the map!\n"), -1);
 	return(0);
 } */
-int	check_p_e(char **matrix)
+int	check_p_e(t_check *check)
 {
 	int	i;
 	int	j;
@@ -42,14 +42,14 @@ int	check_p_e(char **matrix)
 	e = 0;
 	p = 0;
 	i = 0;
-	while (matrix[i])
+	while (check->matrix[i])
 	{
 		j = 0;
-		while(matrix[i][j])
+		while(check->matrix[i][j])
 		{
-			if (matrix[i][j] == 'E')
+			if (check->matrix[i][j] == 'E')
 				e++;
-			else if (matrix[i][j] == 'P')
+			else if (check->matrix[i][j] == 'P')
 				p++;
 			j++;
 		}
@@ -59,92 +59,122 @@ int	check_p_e(char **matrix)
 		return(ft_printf("INVALID_MAP\nMissing spawnpoint or exit!\n"), -1);
 	return(0);
 }
-int	check_c(char **matrix)
+int	check_c(t_check *check)
 {
 	int	i;
 	int	j;
-	int	c;
 
-	c = 0;
+	check->col = 0;
 	i = 0;
-	while (matrix[i])
+	while (check->matrix[i])
 	{
 		j = 0;
-		while(matrix[i][j])
+		while(check->matrix[i][j])
 		{
-			if (matrix[i][j] == 'C')
-				c++;
+			if (check->matrix[i][j] == 'C')
+				check->col++;
 			j++;
 		}
 		i++;
 	}
-	if (!(c > 0))
+	if (!(check->col > 0))
 		return(ft_printf("INVALID_MAP\nIncorrect values on the map!\n"), -1);
-	return(c);
+	return(check->col);
 }
-int	top_bot_wall(char **matrix, int count)
+int	top_bot_wall(t_check *check)
 {
 	int	i;
 
 	i = 0;
-	while(matrix[0][i] && matrix[0][i] != '\n')
+	while(check->matrix[0][i] && check->matrix[0][i] != '\n')
 	{
-		if(matrix[0][i] == '1')
+		if(check->matrix[0][i] == '1')
 			i++;
 		else
 			return(ft_printf("INVALID_MAP\nMap is not top closed!\n"), -1);
 	}
 	i = 0;
-	while(matrix[count - 1][i] && matrix[count - 1][i] != '\n')
+	while(check->matrix[check->count - 1][i] && check->matrix[check->count - 1][i] != '\n')
 	{
-		if(matrix[count - 1][i] == '1')
+		if(check->matrix[check->count - 1][i] == '1')
 			i++;
 		else
 			return(ft_printf("INVALID_MAP\nMap is not bot closed!\n"), -1);
 	}
 	return(0);
 }
-int	lateral_wall(char **matrix)
+int	lateral_wall(t_check *check) /// old
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while(matrix[i])
+	while(check->matrix[i])
 	{
-		if(matrix[i][0] == '1')
-			i++;
-		else
+		if(check->matrix[i][0] != '1')
 			return(ft_printf("INVALID_MAP\nMap is not left closed!\n"), -1);
+		i++;
 	}
 	i = 0;
-	while(matrix[0][j])
+	while(check->matrix[0][j] && check->matrix[0][j] != '\n')
 		j++;
-	while(matrix[i][j])
+	j -= 1;
+	i = 0;
+	while(check->matrix[i])
 	{
-		if(matrix[i][j] == '1')
-			i++;
-		else
+		if(check->matrix[i][j] != '1')
 			return(ft_printf("INVALID_MAP\nMap is not right closed!\n"), -1);
+		i++;
 	}
 	return(0);
 }
-int	flag_char(char **matrix)
+
+/* int lateral_wall(t_check *check)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (check->matrix[i])
+    {
+        if (check->matrix[i][0] != '1')
+            return (ft_printf("INVALID_MAP\nMap is not left closed!\n"), -1);
+        i++;
+    }
+
+    i = 0;
+    j = 0;
+    while (check->matrix[0][j] && check->matrix[0][j] != '\n') // Correct the loop
+        j++;
+    j -= 1;
+
+    i = 0;
+    while (check->matrix[i])
+    {
+        if (check->matrix[i][j] != '1')
+            return (ft_printf("INVALID_MAP\nMap is not right closed!\n"), -1);
+        i++;
+    }
+    return (0);
+} */
+
+
+int	flag_char(t_check *check)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (matrix[i])
+	while (check->matrix[i])
 	{
 		j = 0;
-		while(matrix[i][j])
+		while(check->matrix[i][j])
 		{
-			if (matrix[i][j] != 'E' && matrix[i][j] != 'C' && matrix[i][j] != 'P' &&
-				matrix[i][j] != '1' && matrix[i][j] != '0' && matrix[i][j] != '\n')
+			if (check->matrix[i][j] != 'E' && check->matrix[i][j] != 'C' && check->matrix[i][j] != 'P' &&
+				check->matrix[i][j] != '1' && check->matrix[i][j] != '0' && check->matrix[i][j] != '\n')
 			{
-				ft_printf("INVALID_MAP: Invalid character '%c' at row %d, col %d\n",  matrix[i][j], i, j);
+				ft_printf("INVALID_MAP: Invalid character '%c' at row %d, col %d\n",  check->matrix[i][j], i, j);
 				return(-1);
 			}
 			j++;
