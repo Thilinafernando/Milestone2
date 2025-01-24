@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:39:51 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/23 18:04:24 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:53:56 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # include <ctype.h>
 # include <errno.h>
 
+typedef struct s_img
+{
+	void	*player;
+	void	*wall;
+	void	*coll;
+	void	*groud;
+	void	*exit;
+} t_img;
+
 typedef struct s_check
 {
 	char	**matrix;
@@ -47,12 +56,12 @@ int	check_p_e(t_check *check);
 int	check_c(t_check *check);
 // int	all_check(t_check *check);
 char	**store(t_check *check);
-int	count_line(void);
+int	count_line(t_check	*check);
 int	find_pos_x(t_check *check);
 int find_pos_y(t_check *check);
 char	**dup_matrix(t_check *check);
 int	validate_pos(char **nmatrix, int new_x, int new_y, t_check *check);
-int	ft_backtracking(char **nmatrix, t_check *check);
+int	ft_backtracking(char **nmatrix, int x, int y, t_check *check);
 int	validate_map(char **nmatrix, t_check *check);
 
 

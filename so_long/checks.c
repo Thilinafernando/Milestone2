@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:26:53 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/23 16:26:13 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:01:59 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	check_p_e(t_check *check)
 	e = 0;
 	p = 0;
 	i = 0;
+	if(check->matrix == NULL)
+		return(-1);
 	while (check->matrix[i])
 	{
 		j = 0;
@@ -64,27 +66,32 @@ int	check_c(t_check *check)
 	int	i;
 	int	j;
 
+	if(check->matrix == NULL)
+		return(-1);
 	check->col = 0;
 	i = 0;
 	while (check->matrix[i])
 	{
+		//printf("hahhahaha");
 		j = 0;
 		while(check->matrix[i][j])
 		{
 			if (check->matrix[i][j] == 'C')
-				check->col++;
+				check->col += 1;
 			j++;
 		}
 		i++;
 	}
 	if (!(check->col > 0))
-		return(ft_printf("INVALID_MAP\nIncorrect values on the map!\n"), -1);
+		return(ft_printf("INVALID_MAP\nCollectables missing!\n"), -1);
 	return(check->col);
 }
 int	top_bot_wall(t_check *check)
 {
 	int	i;
 
+	if(check->matrix == NULL)
+		return(-1);
 	i = 0;
 	while(check->matrix[0][i] && check->matrix[0][i] != '\n')
 	{
@@ -110,6 +117,8 @@ int	lateral_wall(t_check *check) /// old
 
 	i = 0;
 	j = 0;
+	if(check->matrix == NULL)
+		return(-1);
 	while(check->matrix[i])
 	{
 		if(check->matrix[i][0] != '1')
@@ -130,35 +139,6 @@ int	lateral_wall(t_check *check) /// old
 	return(0);
 }
 
-/* int lateral_wall(t_check *check)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (check->matrix[i])
-    {
-        if (check->matrix[i][0] != '1')
-            return (ft_printf("INVALID_MAP\nMap is not left closed!\n"), -1);
-        i++;
-    }
-
-    i = 0;
-    j = 0;
-    while (check->matrix[0][j] && check->matrix[0][j] != '\n') // Correct the loop
-        j++;
-    j -= 1;
-
-    i = 0;
-    while (check->matrix[i])
-    {
-        if (check->matrix[i][j] != '1')
-            return (ft_printf("INVALID_MAP\nMap is not right closed!\n"), -1);
-        i++;
-    }
-    return (0);
-} */
-
 
 int	flag_char(t_check *check)
 {
@@ -166,6 +146,8 @@ int	flag_char(t_check *check)
 	int	j;
 
 	i = 0;
+	if(check->matrix == NULL)
+		return(-1);
 	while (check->matrix[i])
 	{
 		j = 0;
