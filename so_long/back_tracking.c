@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:03:25 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/24 15:55:01 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:47:16 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**dup_matrix(t_check *check)
 	while (i < check->count)
 	{
 		new_matrix[i] = ft_strdup(check->matrix[i]);
-		if(!new_matrix)
+		if(!new_matrix[i])
 			return(free_mat(new_matrix, i), NULL);
 		i++;
 	}
@@ -100,10 +100,7 @@ int	validate_map(char **nmatrix, t_check *check)
 	if(check->collect != check->col || check->exit != '1')
 		ft_backtracking(nmatrix, check->x, check->y, check);
 	if(check->collect == check->col || check->exit == '1')
-	{
-		ft_printf("VALID MAP! BACKTRACKINGH");
-		return(0);
-	}
+		return(free_mat(nmatrix, check->count), 0);
 	ft_printf("INVALID MAP! BACKTRACKING");
-	return(-1);
+	return(free_mat(nmatrix, check->count), -1);
 }

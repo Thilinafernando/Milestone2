@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:50:04 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/24 13:13:31 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/26 20:48:08 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	count_line(t_check	*check)
 {
-	//t_check	check;
 	int	fd;
 	size_t	j;
 	char *line;
@@ -23,7 +22,6 @@ int	count_line(t_check	*check)
 	fd = open("txt.txt", O_RDONLY);
 	if((line = get_next_line(fd)) != NULL)
 	{
-		//printf("hokana");
 		j = ft_strlen(line);
 		check->count += 1;
 		free(line);
@@ -48,6 +46,7 @@ void	free_mat(char **matrix, int j)
 		free(matrix[j]);
 		j--;
 	}
+	free(matrix);
 	return;
 }
 char	**store(t_check *check)

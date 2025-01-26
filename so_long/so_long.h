@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:39:51 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/24 16:53:56 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:49:12 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
 # include "./libprintf/ft_printf.h"
-
+# include <X11/keysymdef.h>
+# include <X11/keysym.h>
 
 # include <unistd.h>
 # include <string.h>
@@ -28,14 +29,33 @@
 # include <ctype.h>
 # include <errno.h>
 
-typedef struct s_img
+typedef struct s_texture
 {
+	void	*mlx;
+	int		height;
+	int		width;
+	void	*win_ptr;
 	void	*player;
 	void	*wall;
+	void	*rocks;
 	void	*coll;
 	void	*groud;
 	void	*exit;
-} t_img;
+	void	*sea;
+	int		xu;
+	int		yu;
+	int		i;
+	int		j;
+} t_texture;
+
+typedef struct s_move
+{
+	int	xp;
+	int	yp;
+	int	xm;
+	int	ym;
+	int	nm;
+} t_move;
 
 typedef struct s_check
 {
@@ -47,6 +67,13 @@ typedef struct s_check
 	int		collect;
 	int		exit;
 } t_check;
+
+typedef struct s_game {
+	t_move	*move;
+	t_check	*check;
+	t_texture	*text;
+} t_game;
+
 
 void	free_mat(char **matrix, int j);
 int	top_bot_wall(t_check *check);
@@ -63,6 +90,19 @@ char	**dup_matrix(t_check *check);
 int	validate_pos(char **nmatrix, int new_x, int new_y, t_check *check);
 int	ft_backtracking(char **nmatrix, int x, int y, t_check *check);
 int	validate_map(char **nmatrix, t_check *check);
-
+int	check_all(t_check *check);
+void	free_image(t_texture *text);
+int mlx_initialize(t_check *check, t_texture *text);
+int	image_creation(t_check *check, t_texture *text);
+void	free_all(t_check *check, t_texture *text);
+void	image_insertion(t_check *check, t_texture *text);
+void	image_insertion2(t_check *check, t_texture *text);
+int	image_creation2(t_check *check, t_texture *text);
+int	intake(int	keycode, t_game *game);
+void mright(t_move *move, t_check *check, t_texture *text);
+void mleft(t_move *move, t_check *check, t_texture *text);
+void mdown(t_move *move, t_check *check, t_texture *text);
+void mup(t_move *move, t_check *check, t_texture *text);
+int	click(t_game *game);
 
 #endif

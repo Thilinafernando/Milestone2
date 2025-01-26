@@ -11,13 +11,13 @@ PRINT = $(PRINTDIR)libftprintf.a
 LIBFTDIR = libft/
 LIBFT = $(LIBFTDIR)libft.a
 
-NAME = so_long.a
-NAME_BONUS = so_long_bonus.a
+NAME = so_long
+NAME_BONUS = so_long_bonus
 
 GNL = get_next_line/
 GNL_SRC = get_next_line.c get_next_line_utils.c
 SRCDIR = source_fls/
-SRC = parsing.c utils.c checks.c the_call.c back_tracking.c
+SRC = parsing.c checks.c the_call.c back_tracking.c textures.c movement.c free_all.c
 
 BONUSDIR = bonus/
 BONUS =
