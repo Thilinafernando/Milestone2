@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:51:46 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/10 18:31:14 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:04:23 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 1
 # endif
 
 # include <unistd.h>

@@ -6,101 +6,106 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:03:25 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/26 20:47:16 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:06:04 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	find_pos_x(t_check *check)
+int	find_pos_x(t_check *c)
 {
-	check->y = 0;
-	while (check->matrix[check->y])
+	c->y = 0;
+	while (c->matrix[c->y])
 	{
-		check->x = 0;
-		while(check->matrix[check->y][check->x])
+		c->x = 0;
+		while (c->matrix[c->y][c->x])
 		{
-			if (check->matrix[check->y][check->x] == 'P')
+			if (c->matrix[c->y][c->x] == 'P')
 			{
-				return(check->x);
+				return (c->x);
 			}
-			check->x++;
+			c->x++;
 		}
-		check->y++;
+		c->y++;
 	}
-	return(-1);
+	return (-1);
 }
-int	find_pos_y(t_check *check)
-{
 
-	check->y = 0;
-	while (check->matrix[check->y])
+int	find_pos_y(t_check *c)
+{
+	c->y = 0;
+	while (c->matrix[c->y])
 	{
-		check->x = 0;
-		while(check->matrix[check->y][check->x])
+		c->x = 0;
+		while (c->matrix[c->y][c->x])
 		{
-			if (check->matrix[check->y][check->x] == 'P')
+			if (c->matrix[c->y][c->x] == 'P')
 			{
-				return(check->y);
+				return (c->y);
 			}
-			check->x++;
+			c->x++;
 		}
-		check->y++;
+		c->y++;
 	}
-	return(-1);
+	return (-1);
 }
-char	**dup_matrix(t_check *check)
+
+char	**dup_matrix(t_check *c)
 {
 	int		i;
-	char	**new_matrix;
 
 	i = 0;
-	new_matrix = malloc((check->count + 1) * sizeof(char *));
-	if(!new_matrix)
-		return(NULL);
-	while (i < check->count)
+	c->nmat = malloc((c->count + 1) * sizeof(char *));
+	if (!c->nmat)
+		return (NULL);
+	while (i < c->count)
 	{
-		new_matrix[i] = ft_strdup(check->matrix[i]);
-		if(!new_matrix[i])
-			return(free_mat(new_matrix, i), NULL);
+		c->nmat[i] = ft_strdup(c->matrix[i]);
+		if (!c->nmat[i])
+			return (free_mat(c->nmat), NULL);
 		i++;
 	}
-	new_matrix[check->count] = NULL;
-	return(new_matrix);
+	c->nmat[c->count] = NULL;
+	return (c->nmat);
 }
 
-int	validate_pos(char **nmatrix, int new_x, int new_y, t_check *check)
+int	validate_pos(int new_x, int new_y, t_check *c)
 {
-	if((new_y > (check->count - 1)) || (new_x > ((int)ft_strlen(nmatrix[0]) - 1)))
-		return(-1);
-	else if(nmatrix[new_y][new_x] == '1' || nmatrix[new_y][new_x] == 'M')
-		return(-1);
-
-	return(0);
-}
-int	ft_backtracking(char **nmatrix, int x, int y, t_check *check)
-{
-	if(nmatrix[y][x] == 'C')
-		check->collect = check->collect + 1;
-	if(nmatrix[y][x] == 'E')
-		check->exit = check->exit + 1;
-	nmatrix[y][x] = 'M';
-	if(validate_pos(nmatrix, (x + 1), y, check) == 0)
-		ft_backtracking(nmatrix,(x + 1), y,check);
-	if(validate_pos(nmatrix, (x - 1), y, check) == 0)
-		ft_backtracking(nmatrix,(x - 1), y,check);
-	if(validate_pos(nmatrix, x, (y + 1), check) == 0)
-		ft_backtracking(nmatrix, x ,(y + 1),check);
-	if(validate_pos(nmatrix, x, (y - 1), check) == 0)
-		ft_backtracking(nmatrix,x , (y - 1),check);
+	if ((new_y > (c->count - 1)) || (new_x > ((int)ft_strlen(c->nmat[0]) - 1)))
+		return (-1);
+	else if (c->nmat[new_y][new_x] == '1' || c->nmat[new_y][new_x] == 'M')
+		return (-1);
 	return (0);
 }
-int	validate_map(char **nmatrix, t_check *check)
+
+int	ft_backtracking(int x, int y, t_check *c)
 {
-	if(check->collect != check->col || check->exit != '1')
-		ft_backtracking(nmatrix, check->x, check->y, check);
-	if(check->collect == check->col || check->exit == '1')
-		return(free_mat(nmatrix, check->count), 0);
-	ft_printf("INVALID MAP! BACKTRACKING");
-	return(free_mat(nmatrix, check->count), -1);
+	if (c->nmat[y][x] == 'C')
+		c->collect = c->collect + 1;
+	if (c->nmat[y][x] == 'E')
+		c->exit = c->exit + 1;
+	c->nmat[y][x] = 'M';
+	if (validate_pos((x + 1), y, c) == 0)
+		ft_backtracking((x + 1), y, c);
+	if (validate_pos((x - 1), y, c) == 0)
+		ft_backtracking((x - 1), y, c);
+	if (validate_pos(x, (y + 1), c) == 0)
+		ft_backtracking(x, (y + 1), c);
+	if (validate_pos(x, (y - 1), c) == 0)
+		ft_backtracking(x, (y - 1), c);
+	return (0);
+}
+
+int	validate_map(t_check *c)
+{
+	if (c->collect != c->col || c->exit != '1')
+		ft_backtracking(c->x, c->y, c);
+	if (c->collect == c->col || c->exit == '1')
+		return (free_mat(c->nmat), 0);
+	else
+	{
+		ft_printf("INVALID MAP! BACKTRACKING");
+		return (free_mat(c->nmat), -1);
+	}
+	return (0);
 }

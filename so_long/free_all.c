@@ -6,28 +6,28 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:01:19 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/26 20:22:45 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:16:24 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_all(t_check *check, t_texture *text)
+void	free_all(t_check *c, t_texture *t)
 {
-	free_mat(check->matrix, check->count);
-	free_image(text);
-	if(text->win_ptr)
-		mlx_destroy_window(text->mlx, text->win_ptr);
-	if(text->mlx)
+	free_mat(c->matrix);
+	free_image(t);
+	if (t->win_ptr)
+		mlx_destroy_window(t->mlx, t->win_ptr);
+	if (t->mlx)
 	{
-		mlx_destroy_display(text->mlx);
-		free(text->mlx);
+		mlx_destroy_display(t->mlx);
+		free(t->mlx);
 	}
-	return;
-}
-int	click(t_game *game)
-{
-	free_all(game->check, game->text);
-	exit(0);
+	return ;
 }
 
+int	click(t_game *g)
+{
+	free_all(g->c, g->t);
+	exit(0);
+}
