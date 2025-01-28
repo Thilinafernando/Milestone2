@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:19:57 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/27 21:58:00 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:06:27 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	check_all(t_check *c)
 {
 	char	**map;
 	char	**new;
-	int		x;
-	int		y;
 
 	c->matrix = NULL;
 	c->x = 0;
@@ -30,8 +28,8 @@ int	check_all(t_check *c)
 	if (!map)
 		return (ft_printf("INVALID MAP\n"), -1);
 	check_c(c);
-	x = find_pos_x(c);
-	y = find_pos_y(c);
+	find_pos_x(c);
+	find_pos_y(c);
 	new = dup_matrix(c);
 	if ((check_p_e(c) < 0) || (c->col <= 0) || (top_bot_wall(c) < 0)
 		|| lateral_wall(c) < 0 || flag_char(c) < 0 || check_0(c) < 0)

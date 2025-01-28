@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:22:17 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/27 22:01:08 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/29 00:12:02 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ int	mlx_initialize(t_check *c, t_texture *t)
 	t->width = (ft_strlen(c->matrix[0]) - 1);
 	if (t->width <= 0 || t->height <= 0)
 		return (ft_printf("Error: Invalid matrix dimensions\n"), -1);
-	t->win_ptr = mlx_new_window(t->mlx, t->width * 48,
-			t->height * 48, "SO_LONG");
+	t->win_ptr = NULL;
+	t->width = t->width * 48;
+	t->height = t->height * 48;
+	t->win_ptr = mlx_new_window(t->mlx, t->width, t->height, "SO_LONG");
+	ft_printf("AFTER :width%d\n height%d\n mlx%p \nwin%p\n", (t->width * 48),  (t->height * 48), t->mlx, t->win_ptr);
 	if (!t->win_ptr)
 		return (ft_printf("ISSUE WHILE MAKING WINDOW!"), -1);
 	return (0);

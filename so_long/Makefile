@@ -1,4 +1,4 @@
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 MLX_FLAGS = mlx/libmlx.a -L/usr/lib/X11 -lXext -lX11
