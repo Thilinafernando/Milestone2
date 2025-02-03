@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:39:51 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/27 21:06:59 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:26:34 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define SO_LONG_H
 # define IMG_WIN mlx_put_image_to_window
 
-# include "./mlx/mlx.h"
-# include "./mlx/mlx_int.h"
-# include "./libft/libft.h"
-# include "./get_next_line/get_next_line.h"
-# include "./libprintf/ft_printf.h"
+# include "../mlx/mlx.h"
+# include "../mlx/mlx_int.h"
+# include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
+# include "../libprintf/ft_printf.h"
 # include <X11/keysymdef.h>
 # include <X11/keysym.h>
 

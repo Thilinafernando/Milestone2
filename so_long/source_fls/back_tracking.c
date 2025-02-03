@@ -6,49 +6,11 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:03:25 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/01/27 20:06:04 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:24:39 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	find_pos_x(t_check *c)
-{
-	c->y = 0;
-	while (c->matrix[c->y])
-	{
-		c->x = 0;
-		while (c->matrix[c->y][c->x])
-		{
-			if (c->matrix[c->y][c->x] == 'P')
-			{
-				return (c->x);
-			}
-			c->x++;
-		}
-		c->y++;
-	}
-	return (-1);
-}
-
-int	find_pos_y(t_check *c)
-{
-	c->y = 0;
-	while (c->matrix[c->y])
-	{
-		c->x = 0;
-		while (c->matrix[c->y][c->x])
-		{
-			if (c->matrix[c->y][c->x] == 'P')
-			{
-				return (c->y);
-			}
-			c->x++;
-		}
-		c->y++;
-	}
-	return (-1);
-}
 
 char	**dup_matrix(t_check *c)
 {
@@ -73,7 +35,8 @@ int	validate_pos(int new_x, int new_y, t_check *c)
 {
 	if ((new_y > (c->count - 1)) || (new_x > ((int)ft_strlen(c->nmat[0]) - 1)))
 		return (-1);
-	else if (c->nmat[new_y][new_x] == '1' || c->nmat[new_y][new_x] == 'M')
+	else if (c->nmat[new_y][new_x] == '1' || c->nmat[new_y][new_x] == 'M'
+			|| c->nmat[new_y][new_x] == 'E')
 		return (-1);
 	return (0);
 }
