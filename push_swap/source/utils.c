@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:03:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/09 21:34:05 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:57:07 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,15 @@ int	fft_lstsize(t_swap *lst)
 		i++;
 	}
 	return (i);
+}
+
+void	swap_conent(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *b;
+	*b = *a;
+	*a = tmp;
 }
 
 int	index_a(t_swap *a, int n)

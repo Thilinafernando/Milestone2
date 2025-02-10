@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:15:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/09 21:34:00 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:56:47 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,7 @@
 	stack[i] = '\0';
 	return (stack);
 }
-void	swap(int *a, int *b)
-{
-	int	tmp;
 
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
 
 void	sort_a(int n, int *stack)
 {
