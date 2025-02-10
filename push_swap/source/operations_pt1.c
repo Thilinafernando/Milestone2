@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:08:20 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/06 18:56:49 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/09 18:57:20 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int	rrr(t_swap **a, t_swap **b)
 		return (1);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	t_swap	*head = fft_lstnew(3);
 	t_swap	*h2 = fft_lstnew(2);
@@ -187,4 +187,4 @@ int	main(void)
 	print_lst(head2);
 	free_list(head2);
 	free_list(head);
-}
+} */

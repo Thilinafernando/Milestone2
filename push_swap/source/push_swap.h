@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:09:02 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/06 18:41:54 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/09 20:53:29 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,9 @@ int	rr(t_swap **a, t_swap **b);
 int	rra(t_swap **swap);
 int	rrb(t_swap **swap);
 int	rrr(t_swap **a, t_swap **b);
+int	index_a(t_swap *a, int n);
+int	fft_lstsize(t_swap *lst);
+int	moves_b(t_swap *b, int i);
+int	moves_a(t_swap *a, int n);
 
 #endif

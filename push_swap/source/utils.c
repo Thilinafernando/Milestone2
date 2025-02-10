@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:03:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/06 18:28:50 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/09 21:34:05 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,35 @@ t_swap	*lastnode1(t_swap **swap)
 	while(tmp->next->next)
 		tmp = tmp->next;
 	return(tmp);
+}
+int	fft_lstsize(t_swap *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst -> next;
+		i++;
+	}
+	return (i);
+}
+
+int	index_a(t_swap *a, int n)
+{
+	int	i;
+	t_swap	*tmp;
+
+	i = 0;
+	tmp = a;
+	while(tmp->next)
+	{
+		if(tmp->content < n && (tmp->next->content > n))
+			return (i + 1);
+		i++;
+		tmp = tmp->next;
+	}
+	if (tmp->content < n)
+		return (i + 1);
+	return (0);
 }
