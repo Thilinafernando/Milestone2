@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:09:02 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/10 21:59:25 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:23:11 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	moves_b(t_swap *b, int i);
 int	moves_a(t_swap *a, int n);
 int	best_element(t_swap *a, t_swap *b);
 void	swap_conent(int *a, int *b);
-void	movement_a(t_swap *a, int pos_a);
-void	movement_b(t_swap *b, int index);
-void	movement(t_swap *a, t_swap *b, int index);
+void	movement_a(t_swap **a, int pos_a);
+void	movement_b(t_swap **b, int index);
+void	movement(t_swap **a, t_swap **b, int index);
+void	push_all(t_swap **a, t_swap **b);
 
 #endif

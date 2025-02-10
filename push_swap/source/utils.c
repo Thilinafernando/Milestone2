@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:03:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/10 20:57:07 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/10 23:58:08 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,35 @@ void	swap_conent(int *a, int *b)
 
 int	index_a(t_swap *a, int n)
 {
-	int	i;
+	int		i;
 	t_swap	*tmp;
+
+	if (!a)
+		return (0);
 
 	i = 0;
 	tmp = a;
-	while(tmp->next)
+
+	while (tmp->next)
 	{
-		if(tmp->content < n && (tmp->next->content > n))
+		// printf("Checking: %d < %d < %d\n", tmp->content, n, tmp->next->content);
+		if (tmp->content < n && tmp->next->content > n)
+		{
+			// printf("Insert at index: %d\n", i + 1);
 			return (i + 1);
+		}
 		i++;
 		tmp = tmp->next;
 	}
+
+	//If `n` is larger than all elements, place it at the beginning (index 0)
 	if (tmp->content < n)
+	{
 		return (i + 1);
+	}
+
+	// printf("Insert at beginning, returning: 0\n");
 	return (0);
 }
+
+

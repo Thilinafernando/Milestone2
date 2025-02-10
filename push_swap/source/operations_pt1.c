@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:08:20 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/10 21:29:30 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:00:38 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	ss(t_swap *a, t_swap *b)
 }
 int	pa(t_swap **a, t_swap **b)
 {
-	if(!a || !*a)
-	return(-1);
+	if (!b || !*b)
+		return(-1);
 	t_swap	*tmp;
 
-	tmp = *a;
-	*a = tmp->next;
-	tmp->next = *b;
-	*b = tmp;
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = *a;
+	*a = tmp;
 	ft_printf("pa\n");
 	return(1);
 }
@@ -65,10 +65,10 @@ int	pb(t_swap **a, t_swap **b)
 	return(-1);
 	t_swap	*tmp;
 
-	tmp = *b;
-	*b = tmp->next;
-	tmp->next = *a;
-	*a = tmp;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = *b;
+	*b = tmp;
 	ft_printf("pb\n");
 	return(1);
 }
