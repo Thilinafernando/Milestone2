@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:09:02 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/11 00:23:11 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:42:10 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct s_swap
 	int				content;
 	struct s_swap	*next;
 } t_swap;
+
+typedef struct s_data
+{
+	int				pos_a;
+	int				index;
+	int				size_a;
+	int				size_b;
+} t_data;
 
 # include <unistd.h>
 # include <string.h>

@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:30:58 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/11 00:51:35 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:50:19 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,38 +133,61 @@ void	movement_a(t_swap **a, int pos_a)
 	}
 		return ;
 }
-
-void	movement(t_swap **a, t_swap **b, int index)
+void	rr_movement(t_swap **a, t_swap ** b, t_data *d)
 {
-	int	pos_a;
+	while (d->pos_a > 0 && d->index > 0 && d->pos_a < d->size_a / 2 && d->index < d->size_b / 2)
+	{
+		rr(a, b);
+		d->pos_a--;
+		d->index--;
+	}
+}
+void	rrr_movement(t_swap **a, t_swap ** b, t_data *d)
+{
+	while (d->pos_a > 0 && d->index > 0 && d->pos_a > d->size_a / 2 && d->index > d->size_b / 2)
+	{
+		rrr(a, b);
+		d->pos_a++;
+		d->index++;
+	}
+}
+
+void	movement(t_swap **a, t_swap **b, t_data *d)
+{
 	t_swap	*tem;
 	int	tmp;
 
-	tmp = index;
+	d->size_a = fft_lstsize(a);
+	d->size_b = fft_lstsize(b);
+	tmp = d->index;
 	tem = *b;
 	while(tmp > 0 && tem)
 	{
 		tem = tem->next;
 		tmp--;
 	}
-	pos_a = index_a(*a, tem->content);
-	movement_b(b, index); //to implement if
-	movement_a(a, pos_a);
+	d->pos_a = index_a(*a, tem->content);
+	if (((d->index < (d->size_b / 2)) && (d->pos_a < (d->size_a / 2))))
+		rr_movement(a, b, d);
+	else if (((d->index > (d->size_b / 2)) && (d->pos_a > (d->size_a / 2))))
+		rrr_movement(a, b, d);
+	movement_b(b, d->index);
+	movement_a(a, d->pos_a);
 	pa(a, b);
 }
 void	push_all(t_swap **a, t_swap **b)
 {
-	int	index;
+	t_data	d;
 
 	while(*b)
 	{
-		index = best_element(*a, *b);
+		d.index = best_element(*a, *b);
 		ft_printf("Before movement:\nA: ");
 		print_lst(*a);
 		ft_printf("\nB: ");
 		print_lst(*b);
 		ft_printf("\n");
-		movement(a, b, index);
+		movement(a, b, &d);
 		ft_printf("After movement:\nA: ");
 		print_lst(*a);
 		ft_printf("\nB: ");
