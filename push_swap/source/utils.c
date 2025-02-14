@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:03:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/10 23:58:08 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:25:45 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,15 @@ t_swap	*lastnode1(t_swap **swap)
 }
 int	fft_lstsize(t_swap *lst)
 {
+	t_swap	*tmp;
+
+	tmp = lst;
 	int	i;
 
 	i = 0;
-	while (lst)
+	while (tmp)
 	{
-		lst = lst -> next;
+		tmp = tmp -> next;
 		i++;
 	}
 	return (i);
@@ -109,34 +112,26 @@ void	swap_conent(int *a, int *b)
 
 int	index_a(t_swap *a, int n)
 {
-	int		i;
+	int	i;
 	t_swap	*tmp;
-
-	if (!a)
-		return (0);
 
 	i = 0;
 	tmp = a;
-
-	while (tmp->next)
+	while(tmp->next)
 	{
-		// printf("Checking: %d < %d < %d\n", tmp->content, n, tmp->next->content);
-		if (tmp->content < n && tmp->next->content > n)
+		if(tmp->content < n && (tmp->next->content > n))
 		{
-			// printf("Insert at index: %d\n", i + 1);
-			return (i + 1);
+			ft_printf("index_a: %d should be inserted between %d and %d at position %d.\n", n, tmp->content, tmp->next->content, i + 1);
+			return (i + 2);
 		}
 		i++;
 		tmp = tmp->next;
 	}
-
-	//If `n` is larger than all elements, place it at the beginning (index 0)
 	if (tmp->content < n)
 	{
-		return (i + 1);
+		ft_printf("index_a: %d is larger than all elements in A. Insert at position %d.\n", n, i);
+		return (i + 2);
 	}
-
-	// printf("Insert at beginning, returning: 0\n");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:09:02 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/11 19:42:10 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:20:36 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 # include <stdio.h>
 # include <fcntl.h>
 # include <ctype.h>
+# include <limits.h>
 
 t_swap	*fft_lstnew(int	content);
 void	free_list(t_swap *swap);
@@ -56,13 +57,14 @@ int	rrb(t_swap **swap);
 int	rrr(t_swap **a, t_swap **b);
 int	index_a(t_swap *a, int n);
 int	fft_lstsize(t_swap *lst);
-int	moves_b(t_swap *b, int i);
-int	moves_a(t_swap *a, int n);
+int	moves_b(int i, int ls_size);
+int	moves_a(int pos_a);
 int	best_element(t_swap *a, t_swap *b);
 void	swap_conent(int *a, int *b);
 void	movement_a(t_swap **a, int pos_a);
 void	movement_b(t_swap **b, int index);
-void	movement(t_swap **a, t_swap **b, int index);
+void	movement(t_swap **a, t_swap **b, t_data *d);
 void	push_all(t_swap **a, t_swap **b);
+void pb_only_two_a(t_swap **a, t_swap **b);
 
 #endif
