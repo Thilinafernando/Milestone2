@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:03:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/14 22:25:45 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:28:16 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,31 +108,6 @@ void	swap_conent(int *a, int *b)
 	tmp = *b;
 	*b = *a;
 	*a = tmp;
-}
-
-int	index_a(t_swap *a, int n)
-{
-	int	i;
-	t_swap	*tmp;
-
-	i = 0;
-	tmp = a;
-	while(tmp->next)
-	{
-		if(tmp->content < n && (tmp->next->content > n))
-		{
-			ft_printf("index_a: %d should be inserted between %d and %d at position %d.\n", n, tmp->content, tmp->next->content, i + 1);
-			return (i + 2);
-		}
-		i++;
-		tmp = tmp->next;
-	}
-	if (tmp->content < n)
-	{
-		ft_printf("index_a: %d is larger than all elements in A. Insert at position %d.\n", n, i);
-		return (i + 2);
-	}
-	return (0);
 }
 
 
