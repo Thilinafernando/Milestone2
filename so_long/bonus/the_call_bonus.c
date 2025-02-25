@@ -26,7 +26,7 @@ int	check_all(t_check *c)
 	c->col = 0;
 	map = store(c);
 	if (!map)
-		return (ft_printf("INVALID MAP\n"), -1);
+		return (ft_printf("ERROR\nINVALID MAP\n"), -1);
 	check_c(c);
 	find_pos_x(c);
 	find_pos_y(c);

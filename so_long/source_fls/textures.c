@@ -16,7 +16,7 @@ void	free_image(t_texture *t)
 {
 	if (!t->player || !t->coll || !t->groud || !t->wall
 		|| !t->exit || !t->rocks || !t->sea)
-		ft_printf("ERROR WHILE LOADING IMAGE!");
+		ft_printf("ERROR\nIMAGE!");
 	if (t->player)
 		mlx_destroy_image(t->mlx, t->player);
 	if (t->exit)
@@ -58,7 +58,7 @@ int	mlx_initialize(t_check *c, t_texture *t)
 	t->win_ptr = mlx_new_window(t->mlx, t->width * 48,
 			t->height * 48, "SO_LONG");
 	if (!t->win_ptr)
-		return (ft_printf("ISSUE WHILE MAKING WINDOW!"), -1);
+		return (ft_printf("ERROR\nWINDOW!"), -1);
 	return (0);
 }
 

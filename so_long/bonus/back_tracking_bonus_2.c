@@ -20,7 +20,7 @@ int	validate_map(t_check *c)
 		return (free_mat(c->nmat), 0);
 	else
 	{
-		ft_printf("INVALID MAP! BACKTRACKING");
+		ft_printf("ERROR\n!BACKTRACKING");
 		return (free_mat(c->nmat), -1);
 	}
 	return (0);

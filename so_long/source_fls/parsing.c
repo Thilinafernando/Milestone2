@@ -18,7 +18,7 @@ int	tryread(t_check *c)
 
 	fd = open(c->arg, O_RDONLY);
 	if (fd == -1)
-		return (ft_printf("MAP NOT FOUND"), -1);
+		return (ft_printf("ERROR\nMAP NOT FOUND"), -1);
 	return (0);
 }
 

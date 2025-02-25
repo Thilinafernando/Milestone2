@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 16:03:31 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/17 17:28:16 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/23 15:54:53 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_swap	*fft_lstnew(int	content)
 	newnode -> next = NULL;
 	return (newnode);
 }
+
 void	free_list(t_swap *swap)
 {
 	t_swap	*tmp;
@@ -62,52 +63,15 @@ void	print_lst(t_swap *swap)
 	}
 }
 
-t_swap	*lastnode(t_swap **swap)
+t_swap *lastnode(t_swap **swap)
 {
-	t_swap	*tmp;
+	t_swap *tmp;
 
-	tmp = *swap;
-	if(!tmp || !tmp->next)
+	if (!swap || !*swap)
 		return (NULL);
-	while(tmp->next)
-		tmp = tmp->next;
-	return(tmp);
-}
-
-t_swap	*lastnode1(t_swap **swap)
-{
-	t_swap	*tmp;
-
 	tmp = *swap;
-	if(!tmp || !tmp->next)
-		return (NULL);
-	while(tmp->next->next)
+	while (tmp->next)
 		tmp = tmp->next;
-	return(tmp);
+	return (tmp);
 }
-int	fft_lstsize(t_swap *lst)
-{
-	t_swap	*tmp;
-
-	tmp = lst;
-	int	i;
-
-	i = 0;
-	while (tmp)
-	{
-		tmp = tmp -> next;
-		i++;
-	}
-	return (i);
-}
-
-void	swap_conent(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
-
 
