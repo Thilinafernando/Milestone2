@@ -20,14 +20,14 @@ int	main(int ac, char **av)
 	t_data	d;
 
 	b = NULL;
-	if (ac <= 2)
+	if (ac < 2)
 		return (write(2, "ERROR\n", 6), 0);
 	matrix = matrix_creation(ac, av);
 	if (matrix == NULL)
 		return (write(2, "ERROR\n", 6), 0);
 	a = lstcreation(matrix);
-	if (!a)
-		return (0);
+	if (!a || !a->next)
+		return (free_list(a), 0);
 	if (fft_lstsize(a) == 3)
 		return (three_args(&a), free_list(a), 0);
 	while (a && a->next->next && (is_sorted(&a) == 0))
