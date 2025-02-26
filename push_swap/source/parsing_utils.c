@@ -6,13 +6,13 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:47:34 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/26 15:17:06 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:39:47 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_arg(char **matrix)
+int	check_arg(char **matrix, int f)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,8 @@ int	check_arg(char **matrix)
 				i++;
 			else
 			{
-				write(2, "ERROR\n", 6);
+				if (f == 1)
+					write(2, "ERROR\n", 6);
 				return (0);
 			}
 		}
@@ -38,7 +39,7 @@ int	check_arg(char **matrix)
 	return (1);
 }
 
-int	duplicates(char **matrix)
+int	duplicates(char **matrix, int f)
 {
 	int	i;
 	int	j;
@@ -49,9 +50,10 @@ int	duplicates(char **matrix)
 		j = i + 1;
 		while (matrix[j])
 		{
-			if (ft_strcmp(matrix[i], matrix[j]) == 0)
+			if (ft_atoi(matrix[i]) == ft_atoi(matrix[j]))
 			{
-				write(2, "ERROR\n", 6);
+				if (f == 1)
+					write(2, "ERROR\n", 6);
 				return (0);
 			}
 			j++;
@@ -61,17 +63,17 @@ int	duplicates(char **matrix)
 	return (1);
 }
 
-char	**two_args(char *argv)
+char	**two_args(char *argv, int i)
 {
 	char	**matrix;
 
 	matrix = ft_split(argv, 32);
-	if (check_arg(matrix) == 0 || duplicates(matrix) == 0)
+	if (check_arg(matrix, i) == 0 || duplicates(matrix, i) == 0)
 		return (free_mat(matrix), NULL);
 	return (matrix);
 }
 
-char	**more_args(int argc, char **av)
+char	**more_args(int argc, char **av, int f)
 {
 	int		j;
 	int		i;
@@ -91,7 +93,7 @@ char	**more_args(int argc, char **av)
 		j++;
 	}
 	matrix[j] = NULL;
-	if (check_arg(matrix) == 0 || duplicates(matrix) == 0)
+	if (check_arg(matrix, f) == 0 || duplicates(matrix, f) == 0)
 		return (free_mat(matrix), NULL);
 	return (matrix);
 }
@@ -109,7 +111,8 @@ t_swap	*lstcreation(char **matrix)
 	{
 		check = ft_atoi(matrix[i]);
 		if (check > INT_MAX || check < INT_MIN)
-			return (free_mat(matrix), free_list(head), NULL);
+			return (free_mat(matrix), free_list(head),
+				ft_printf("ERROR\n"), NULL);
 		new_node = fft_lstnew((int)check);
 		if (!new_node)
 			return (free_mat(matrix), free_list(head), NULL);
