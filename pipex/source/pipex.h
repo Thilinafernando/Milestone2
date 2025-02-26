@@ -6,7 +6,7 @@
 /*   By: tkurukul <thilinaetoro4575@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:33:29 by tkurukul          #+#    #+#             */
-/*   Updated: 2025/02/25 15:38:33 by tkurukul         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:01:50 by tkurukul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # include <ctype.h>
 # include <limits.h>
 # include <errno.h>
+#include <sys/wait.h>
 
 #endif
